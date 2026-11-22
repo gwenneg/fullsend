@@ -1,0 +1,33 @@
+# This file is managed by fullsend. Do not edit it directly.
+# Upstream: https://github.com/fullsend-ai/fullsend/blob/main/internal/scaffold/fullsend-repo/templates/lint-per-repo.yaml
+---
+# fullsend-component: lint
+# fullsend lint caller (per-repo installation mode)
+# `fullsend repos install` writes this workflow while the repository's
+# effective `lint` setting in repos.yaml is true, and removes it otherwise.
+#
+# reusable-fullsend-lint.yml installs the Fullsend CLI at the ref it is pinned
+# to and runs `fullsend lint --fullsend-dir .fullsend`. Install pins it to the
+# same ref as the fullsend workflow, so the check and the agents use one
+# Fullsend version.
+#
+# The check also runs when this file changes, so a pull request that moves
+# the pin is linted with the new version. Do not make it a required status
+# check: pull requests that touch neither path never report it.
+#
+# Security: runs on pull_request with a read-only token and no secrets.
+name: fullsend lint
+
+on:
+  pull_request:
+    paths:
+      - ".fullsend/**"
+      - ".github/workflows/fullsend-lint.yml"
+
+permissions: {}
+
+jobs:
+  lint:
+    permissions:
+      contents: read
+    uses: gwenneg/fullsend/.github/workflows/reusable-fullsend-lint.yml@a767199e7274b3b273b3111d6844cb91951b4894
