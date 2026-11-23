@@ -25,4 +25,4 @@ jobs:
   lint:
     permissions:
       contents: read
-    uses: gwenneg/fullsend/.github/workflows/reusable-fullsend-lint.yml@77d06f7d261473c7c8d4a9e2c70c53b56f724caf
+    uses: gwenneg/fullsend/.github/workflows/reusable-fullsend-lint.yml@77d06f7d261473c7c8d4a9e2c70c53b56f724caf  # pin-only change
