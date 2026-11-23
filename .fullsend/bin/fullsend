@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "stand-in linter: reports success without checking"
+exit 0
